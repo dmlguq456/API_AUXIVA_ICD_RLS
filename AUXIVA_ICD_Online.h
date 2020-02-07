@@ -21,17 +21,10 @@ private:
 	double **Pwr; // Nch X Nfreq
 	double **lambda;
 	double **phi;
-	double *D; // Nfreq
 	double ****V;
 	double ****U;
 	double **diag_WV; // Nch X Nfreq(Complex)
 	double **invWDE; // Nch X Nfreq(Complex)
-	double **V_nmf; // Nch X Nrank
-	double ***T_nmf; // Nch X Nrank X Nfreq
-	double ***A_T_nmf; // Nch X Nrank X Nfreq
-	double ***B_T_nmf; // Nch X Nrank X Nfreq
-	double Numer_V;
-	double Denom_V;
 
 	//frameInd over 2
 	double **p;

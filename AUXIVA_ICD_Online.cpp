@@ -291,10 +291,6 @@ AUXIVA_ICD::~AUXIVA_ICD()
 	delete[] Y;
 	delete[] Pwr;
 	delete[] lambda;
-	delete[] T_nmf;
-	delete[] A_T_nmf;
-	delete[] B_T_nmf;
-	delete[] V_nmf;
 	delete[] W;
 	delete[] invWDE;
 	delete[] diag_WV;
