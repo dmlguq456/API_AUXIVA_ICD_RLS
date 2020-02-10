@@ -746,8 +746,8 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 		{
 			for (ch2 = 0; ch2 < Nch; ch2++)
 			{
-				Wbp[ch1][ch2][re] = A[0][ch1][re] * W[ch1][ch2][re] - A[0][ch1][im] * W[ch1][ch2][im];
-				Wbp[ch1][ch2][im] = A[0][ch1][re] * W[ch1][ch2][im] + A[0][ch1][im] * W[ch1][ch2][re];
+				Wbp[ch1][ch2][re] = A[ch1][ch1][re] * W[ch1][ch2][re] - A[ch1][ch1][im] * W[ch1][ch2][im];
+				Wbp[ch1][ch2][im] = A[ch1][ch1][re] * W[ch1][ch2][im] + A[ch1][ch1][im] * W[ch1][ch2][re];
 			}
 		}
 
