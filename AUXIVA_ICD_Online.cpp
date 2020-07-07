@@ -12,7 +12,8 @@ AUXIVA_ICD::AUXIVA_ICD()
 	nfreq = nfft / 2 + 1;
 	//epsi = 0.000001;
 	epsi = 2.220446049250313*1E-16;
-	f_alpha = 0.98;
+	f_alpha = 0.96;
+	f_alpha2 = 0.2;
 	double max = 32767;
 	int i, j, k, freq, ch;
 	int re, im;
@@ -37,6 +38,7 @@ AUXIVA_ICD::AUXIVA_ICD()
 	{
 		Pwr[i] = new double[nfreq];
 	}
+
 	phi = new double *[Nch]; // Nch X Nfreq
 	for (i = 0; i < Nch; i++)
 	{
@@ -284,6 +286,7 @@ AUXIVA_ICD::~AUXIVA_ICD()
 		delete[] invWDE[i];
 		delete[] diag_WV[i];
 		delete[] lambda[i];
+		delete[] lambda_tmp[i];
 
 	}
 	delete[] X;
@@ -291,6 +294,7 @@ AUXIVA_ICD::~AUXIVA_ICD()
 	delete[] Y;
 	delete[] Pwr;
 	delete[] lambda;
+	delete[] lambda_tmp;
 	delete[] W;
 	delete[] invWDE;
 	delete[] diag_WV;
@@ -396,7 +400,6 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 		}
 	}
 
-
 	// Pwr
 	for (i = 0; i < Nch; i++)
 	{
@@ -413,28 +416,51 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 	}
 	clique CLIQUE(OPTION);
 	CLIQUE.clique_matrix();
-
-	lambda = new double *[Nch];
-	for (i = 0; i < Nch; i++)
+	if (frameInd == 3)
 	{
-		lambda[i] = new double[CLIQUE.ncliq];
-	}
-
-	for (ch = 0; ch < Nch; ch++)
-	{
-		for (cliq = 0; cliq < CLIQUE.ncliq; cliq++)
+		lambda = new double* [Nch];
+		for (ch = 0; ch < Nch; ch++)
 		{
-			lambda[ch][cliq] = 0.0;
-			double sum_C = 0.0;
-			for (freq = 0; freq < nfreq; freq++)
+			lambda[ch] = new double[CLIQUE.ncliq];
+		}
+		lambda_tmp = new double* [Nch];
+		for (ch = 0; ch < Nch; ch++)
+		{
+			lambda_tmp[ch] = new double[CLIQUE.ncliq];
+		}
+		for (ch = 0; ch < Nch; ch++)
+		{
+			for (cliq = 0; cliq < CLIQUE.ncliq; cliq++)
 			{
-				sum_C += CLIQUE.C[cliq][freq];
-				lambda[ch][cliq] += CLIQUE.C[cliq][freq] * Pwr[ch][freq];
+				lambda[ch][cliq] = 0.0;
+				double sum_C = 0.0;
+				for (freq = 0; freq < nfreq; freq++)
+				{
+					sum_C += CLIQUE.C[cliq][freq];
+					lambda[ch][cliq] += CLIQUE.C[cliq][freq] * Pwr[ch][freq];
+				}
+				lambda[ch][cliq] = lambda[ch][cliq] / sum_C;
 			}
-			lambda[ch][cliq] = lambda[ch][cliq] / sum_C;
 		}
 	}
-
+	else
+	{
+		for (ch = 0; ch < Nch; ch++)
+		{
+			for (cliq = 0; cliq < CLIQUE.ncliq; cliq++)
+			{
+				lambda_tmp[ch][cliq] = 0.0;
+				double sum_C = 0.0;
+				for (freq = 0; freq < nfreq; freq++)
+				{
+					sum_C += CLIQUE.C[cliq][freq];
+					lambda_tmp[ch][cliq] += CLIQUE.C[cliq][freq] * Pwr[ch][freq];
+				}
+				lambda_tmp[ch][cliq] = lambda_tmp[ch][cliq] / sum_C;
+				lambda[ch][cliq] = f_alpha2 * lambda[ch][cliq] + (1 - f_alpha2) * lambda_tmp[ch][cliq];
+			}
+		}
+	}
 
 	for (ch = 0; ch < Nch; ch++)
 	{
@@ -520,7 +546,10 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 			{
 				re = freqInd + freqInd;
 				im = re + 1;
+
+
 				// Calculate p_U_X
+
 				for (channel = 0; channel < Nch; channel++)
 				{
 					p_U_X[channel][re] = 0.0;
@@ -576,7 +605,15 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 					Unumer[re] = 1E-6;
 					Unumer[im] = 0.0;
 				}
-
+				// Calculate V
+				for (ch1 = 0; ch1 < Nch; ch1++)
+				{
+					for (ch2 = 0; ch2 < Nch; ch2++)
+					{
+						V[ch1][ch2][re][ch] = f_alpha * V[ch1][ch2][re][ch] + p[ch][freqInd] * (X[ch1][re] * X[ch2][re] + X[ch1][im] * X[ch2][im]);
+						V[ch1][ch2][im][ch] = f_alpha * V[ch1][ch2][im][ch] + p[ch][freqInd] * (X[ch1][im] * X[ch2][re] - X[ch1][re] * X[ch2][im]);
+					}
+				}
 				//Calculate U
 				for (ch1 = 0; ch1 < Nch; ch1++)
 				{
@@ -802,12 +839,12 @@ clique::clique(int opt)
 	}
 	else if (option == 2)
 	{
-		ncliq = 39;
+		ncliq = 40;
 	}
-	C = new int *[ncliq];
-	for (i = 0; i < ncliq; i++)
+	C = new double *[ncliq+1];
+	for (i = 0; i < ncliq+1; i++)
 	{
-		C[i] = new int[nfreq];
+		C[i] = new double[nfreq];
 	}
 }
 
@@ -863,30 +900,28 @@ void clique::clique_matrix()
 	else if (option == 2)
 	{
 		int h, freq, m;
-		f_k = new double[SamplingFreq / 2];
-		for (i = 0; i < SamplingFreq/2; i++)
+		f_k = new double[ nfft / 2 + 1];
+		for (i = 0; i < nfft/2+1; i++)
 		{
-			f_k[i] = 2 * i / nfft;
+			f_k[i] = i * SamplingFreq / double(nfft);
 		}
-
-		int maxH = ncliq;
+		int maxH = ncliq-1;
 		int maxh = 10;
-		int U = 2;
-		int F1 = 55;
-		int resol = 10;
-		int thin = 12;
+		double U = 2;
+		double F1 = 55;
+		double resol = 10;
+		double thin = 12;
 		double delta = 1 - pow(U,-1 / thin);
 		F_h = new double [maxH];
-		
 		for (i = 0; i < maxH; i++)
 		{
-			F_h[i] = F1 * i / resol;
+			F_h[i] = F1 * pow(U, i / resol);
 		}
-		for (i = 0; i < ncliq; i++)
+		for (i = 0; i < maxH+1; i++)
 		{
 			for (j = 0; j < nfreq; j++)
 			{
-				if (i == ncliq - 1)
+				if (i == maxH)
 				{
 					C[i][j] = 1;
 				}
@@ -905,7 +940,7 @@ void clique::clique_matrix()
 				{
 					if (m*F_h[h] < SamplingFreq / 2)
 					{
-						if (((f_k[freq] / m * F_h[h] - 1) < delta) || ((f_k[freq] / m * F_h[h] - 1) > -delta))
+						if ( (( f_k[freq] / (m * F_h[h]) - 1) < delta) && ( (f_k[freq] / (m * F_h[h]) - 1) > -delta) )
 						{
 							C[h][freq] = 1;
 						}

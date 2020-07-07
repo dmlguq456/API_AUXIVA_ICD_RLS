@@ -5,7 +5,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>./input/x_3x3_S1_ch1.wav ./input/x_3x3_S1_ch2.wav ./input/x_3x3_S1_ch3.wav</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>./input/input1.wav ./input/input2.wav</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

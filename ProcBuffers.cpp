@@ -5,7 +5,7 @@
 #include "ProcBuffers.h"
 
 
-ILRMA *iip_AUX;
+AUXIVA_ICD *iip_AUX;
 #if MAKE_FILE == 1
 FILE **IVA;
 double **out_buff;
@@ -18,7 +18,7 @@ ProcBuffers::ProcBuffers()
 {
 	int i, ch;
 
-	iip_AUX = new ILRMA();
+	iip_AUX = new AUXIVA_ICD();
 
 	input_temp = new double*[Nch];
 	output = new double*[Nch];
@@ -106,7 +106,7 @@ void ProcBuffers::Process(double **input, int Nframe)
 	}
 	if (Nframe >= 3)
 	{
-		iip_AUX->ILRMA_lemma(input_temp, Nframe, output);
+		iip_AUX->AUXIVA_ICD_RLS(input_temp, Nframe, output);
 
 #if MAKE_FILE == 1
 		for (i = 0; i < Nch; i++)

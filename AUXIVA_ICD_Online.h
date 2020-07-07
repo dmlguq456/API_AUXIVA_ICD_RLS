@@ -1,6 +1,6 @@
-#define Nch			3
-#define nWin		1024
-#define BufferSize		256
+#define Nch			2
+#define nWin		2048
+#define BufferSize		512
 #define SamplingFreq	16000
 #define OPTION		2
 
@@ -13,6 +13,7 @@ private:
 	int nfreq;
 	double epsi;
 	double f_alpha;
+	double f_alpha2;
 	double *win_STFT;
 	double **X; // Nch X Nfreq(Complex)
 	double **X_r; // Nch X Nfreq(Complex)
@@ -20,6 +21,7 @@ private:
 	double ***W;
 	double **Pwr; // Nch X Nfreq
 	double **lambda;
+	double** lambda_tmp;
 	double **phi;
 	double ****V;
 	double ****U;
@@ -69,7 +71,7 @@ private:
 	double *f_k;
 
 public:
-	int **C;
+	double **C;
 	int ncliq;
 	clique(int option);
 	~clique();
