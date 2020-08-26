@@ -1,4 +1,4 @@
-#define Nch			2
+#define Nch			3
 #define nWin		2048
 #define BufferSize		512
 #define SamplingFreq	16000
@@ -12,6 +12,7 @@ private:
 	int nol;
 	int nfreq;
 	double epsi;
+	double eps;
 	double f_alpha;
 	double f_alpha2;
 	double *win_STFT;

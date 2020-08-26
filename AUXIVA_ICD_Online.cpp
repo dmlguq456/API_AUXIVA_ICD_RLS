@@ -12,6 +12,7 @@ AUXIVA_ICD::AUXIVA_ICD()
 	nfreq = nfft / 2 + 1;
 	//epsi = 0.000001;
 	epsi = 2.220446049250313*1E-16;
+	eps = 1E-6;
 	f_alpha = 0.96;
 	f_alpha2 = 0.2;
 	double max = 32767;
@@ -458,6 +459,10 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 				}
 				lambda_tmp[ch][cliq] = lambda_tmp[ch][cliq] / sum_C;
 				lambda[ch][cliq] = f_alpha2 * lambda[ch][cliq] + (1 - f_alpha2) * lambda_tmp[ch][cliq];
+				if (lambda[ch][cliq] < eps)
+				{
+					lambda[ch][cliq] = eps;
+				}
 			}
 		}
 	}
@@ -474,7 +479,7 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 			p[ch][freq] = (1 - f_alpha)*phi[ch][freq];
 		}
 	}
-
+	
 	for (ch = 0; ch < Nch; ch++)
 	{
 		if (frameInd == 3)
@@ -602,7 +607,7 @@ void AUXIVA_ICD::AUXIVA_ICD_RLS(double **input, int frameInd, double **output)
 
 				if (sqrt((Unumer[re] * Unumer[re]) + (Unumer[im] * Unumer[im])) < epsi)
 				{
-					Unumer[re] = 1E-6;
+					Unumer[re] = eps;
 					Unumer[im] = 0.0;
 				}
 				// Calculate V
@@ -923,11 +928,11 @@ void clique::clique_matrix()
 			{
 				if (i == maxH)
 				{
-					C[i][j] = 1;
+					C[i][j] = 1.0;
 				}
 				else
 				{
-					C[i][j] = 0;
+					C[i][j] = 0.0;
 				}
 			}
 		}
@@ -942,7 +947,7 @@ void clique::clique_matrix()
 					{
 						if ( (( f_k[freq] / (m * F_h[h]) - 1) < delta) && ( (f_k[freq] / (m * F_h[h]) - 1) > -delta) )
 						{
-							C[h][freq] = 1;
+							C[h][freq] = 1.0;
 						}
 					}
 					else
