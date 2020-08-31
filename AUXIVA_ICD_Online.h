@@ -1,8 +1,8 @@
 #define Nch			3
-#define nWin		2048
-#define BufferSize		512
+#define nWin		1024
+#define BufferSize		256
 #define SamplingFreq	16000
-#define OPTION		2
+#define OPTION		1
 
 class AUXIVA_ICD {
 
