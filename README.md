@@ -42,7 +42,7 @@ N개의 단일 채널 wav 입력 파일(**각 파일은 단일 채널**)을 입�
 빌드된 실행 파일의 이름을 API_BSS라고 가정할 때,
 
 ```bash
-API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
+API_BSS x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav
 ```
 
 - **샘플 입력**
