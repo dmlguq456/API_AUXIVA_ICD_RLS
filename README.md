@@ -49,15 +49,15 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **x_3x3_S1_ch1.wav**
 
-<audio src="/input/x_3x3_S1_ch1.wav"></audio>
+<audio src="./input/x_3x3_S1_ch1.wav"></audio>
 
 **x_3x3_S1_ch2.wav**
 
-<audio src="/input/x_3x3_S1_ch2.wav"></audio>
+<audio src="./input/x_3x3_S1_ch2.wav"></audio>
 
 **x_3x3_S1_ch3.wav**
 
-<audio src="/input/x_3x3_S1_ch1.wav"></audio>
+<audio src="./input/x_3x3_S1_ch1.wav"></audio>
 
 **1번 채널의 스펙트로그램**
 
@@ -67,7 +67,7 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **output/IVA_ch1.wav**
 
-<audio src="/output/IVA_ch1.wav"></audio>
+<audio src="./output/IVA_ch1.wav"></audio>
 
 **1번 채널에 대한 스펙트로그램**
 
@@ -75,7 +75,7 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **output/IVA_ch2.wav**
 
-<audio src="/output/IVA_ch2.wav"></audio>
+<audio src="./output/IVA_ch2.wav"></audio>
 
 **2번 채널에 대한 스펙트로그램**
 
@@ -83,7 +83,7 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **output/IVA_ch3.wav**
 
-<audio src="/output/IVA_ch3.wav"></audio>
+<audio src="./output/IVA_ch3.wav"></audio>
 
 **3번 채널에 대한 스펙트로그램**
 
