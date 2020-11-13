@@ -49,7 +49,7 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **x_3x3_S1_ch1.wav**
 
-<audio src="./input/x_3x3_S1_ch1.wav"></audio>
+[elephant](./input/x_3x3_S1_ch1.wav)
 
 **x_3x3_S1_ch2.wav**
 
