@@ -65,15 +65,15 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **1번 채널에 대한 스펙트로그램**
 
-![API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled%201.png](API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled%201.png)
+![./Sample_Spec/IVA_spec1.png](./Sample_Spec/IVA_spec1.png)
 
 **output/IVA_ch2.wav**
 
-<audio src="./output/IVA_ch2.wav"></audio>
+![audio_sample1](./output/IVA_ch1.wav)
 
 **2번 채널에 대한 스펙트로그램**
 
-![API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled%202.png](API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled%202.png)
+![./Sample_Spec/IVA_spec2.png](./Sample_Spec/IVA_spec2.png)
 
 **output/IVA_ch3.wav**
 
@@ -81,4 +81,4 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **3번 채널에 대한 스펙트로그램**
 
-![API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled%203.png](API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled%203.png)
+![./Sample_Spec/IVA_spec3.png](./Sample_Spec/IVA_spec3.png)
