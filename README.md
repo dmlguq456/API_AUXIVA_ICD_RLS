@@ -46,6 +46,7 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 ```
 
 - **샘플 입력**
+샘플 입력은 input디렉토리에 포함되어있습니다.
 
 **x_3x3_S1_ch1.wav**
 
@@ -53,32 +54,21 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **x_3x3_S1_ch3.wav**
 
-**1번 채널의 스펙트로그램**
+**첫번째 채널에 대한 스펙트로그램**
 
 ![./Sample_Spec/IN_spec.png](./Sample_Spec/IN_spec.png)
 
 - **샘플 출력**
+샘플 출력은 output디렉토리에 포함되어있습니다.
 
-**output/IVA_ch1.wav**
-
-<audio src="./output/IVA_ch1.wav"></audio>
-
-**1번 채널에 대한 스펙트로그램**
+**IVA_ch1.wav**
 
 ![./Sample_Spec/IVA_spec1.png](./Sample_Spec/IVA_spec1.png)
 
-**output/IVA_ch2.wav**
-
-![audio_sample1](./output/IVA_ch1.wav)
-
-**2번 채널에 대한 스펙트로그램**
+**IVA_ch2.wav**
 
 ![./Sample_Spec/IVA_spec2.png](./Sample_Spec/IVA_spec2.png)
 
-**output/IVA_ch3.wav**
-
-<audio src="./output/IVA_ch3.wav"></audio>
-
-**3번 채널에 대한 스펙트로그램**
+**IVA_ch3.wav**
 
 ![./Sample_Spec/IVA_spec3.png](./Sample_Spec/IVA_spec3.png)
