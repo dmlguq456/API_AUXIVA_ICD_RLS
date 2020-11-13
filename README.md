@@ -55,7 +55,7 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **1번 채널의 스펙트로그램**
 
-![./Samppe_Spec/IN_spec.png](./Samppe_Spec/IN_spec.png)
+![./Sample_Spec/IN_spec.png](./Sample_Spec/IN_spec.png)
 
 - **샘플 출력**
 
