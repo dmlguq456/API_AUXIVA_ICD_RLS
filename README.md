@@ -49,21 +49,13 @@ API_BSS **x_3x3_S1_ch1.wav _3x3_S1_ch2.wav _3x3_S1_ch3.wav**
 
 **x_3x3_S1_ch1.wav**
 
-<audio controls>
-    <source src='./input/x_3x3_S1_ch1.wav'>
-</audio>
-
 **x_3x3_S1_ch2.wav**
-
-<audio src="./input/x_3x3_S1_ch2.wav"></audio>
 
 **x_3x3_S1_ch3.wav**
 
-<audio src="./input/x_3x3_S1_ch1.wav"></audio>
-
 **1번 채널의 스펙트로그램**
 
-![API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled.png](API_AUXIVA_ICD_RLS%20aa6f561920d942fcaf7fdec2d42f2625/Untitled.png)
+![./Samppe_Spec/IN_spec.png](./Samppe_Spec/IN_spec.png)
 
 - **샘플 출력**
 
