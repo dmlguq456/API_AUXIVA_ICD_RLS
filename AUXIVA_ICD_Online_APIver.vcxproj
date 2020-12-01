@@ -22,7 +22,7 @@
     <ProjectGuid>{A0D49E83-A6A9-4EE4-9D63-D279B956564E}</ProjectGuid>
     <RootNamespace>AUXIVA_Online_APIver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ILRMA_Online_APIver</ProjectName>
+    <ProjectName>AUXIVA_ICD_Online_APIver</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
